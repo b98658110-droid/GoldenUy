@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenUy — Правила платформы</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========== 1. GLOBAL / RESET (полностью из исходного стиля) ========== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        /* ========== 2. КНОПКИ (стиль из макета) ========== */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+        }
+
+        .btn-secondary:hover {
+            background: #d4af37;
+            color: white;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        /* ========== 3. ОСНОВНОЙ БЛОК ПРАВИЛ ========== */
+        .rules-section {
+            padding: 60px 0 80px;
+        }
+
+        .rules-header {
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .rules-header h1 {
+            font-size: 42px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .rules-header p {
+            font-size: 18px;
+            color: #475569;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .rule-card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px 28px 32px;
+            transition: 0.25s ease;
+            border: 1px solid #eef2ff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            border-color: #d4af3740;
+        }
+
+        .rule-icon {
+            width: 56px;
+            height: 56px;
+            background: #fef9e6;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+
+        .rule-icon i {
+            font-size: 28px;
+            color: #d4af37;
+        }
+
+        .rule-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 14px;
+        }
+
+        .rule-card p {
+            color: #334155;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .rule-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rule-list li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #2c3e66;
+        }
+
+        .rule-list li i {
+            color: #d4af37;
+            font-size: 14px;
+            margin-top: 3px;
+            min-width: 16px;
+        }
+
+        .badge-new {
+            display: inline-block;
+            background: #d4af371a;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 40px;
+            margin-left: 12px;
+            vertical-align: middle;
+            letter-spacing: 0.3px;
+            color: #b68b1e;
+        }
+
+        /* ========== 4. БЛОК ТАБЛИЦЫ ШТРАФОВ / ОГРАНИЧЕНИЙ ========== */
+        .penalty-table-wrapper {
+            background: white;
+            border-radius: 28px;
+            border: 1px solid #eef2ff;
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.03);
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 48px 0 28px 0;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: #d4af37;
+            font-size: 28px;
+        }
+
+        .violation-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .violation-table th {
+            text-align: left;
+            padding: 18px 24px;
+            background-color: #f8fafc;
+            font-weight: 700;
+            color: #1e293b;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 16px;
+        }
+
+        .violation-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #f0f2f5;
+            color: #2d3a5e;
+            font-size: 15px;
+        }
+
+        .violation-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .penalty-badge {
+            background: #fee2e2;
+            color: #b91c1c;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 13px;
+            display: inline-block;
+        }
+
+        .warning-badge {
+            background: #fff3e3;
+            color: #b45309;
+        }
+
+        /* ========== 5. АДАПТИВНОСТЬ (как в оригинале) ========== */
+        @media (max-width: 900px) {
+            .rules-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .container {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .rules-header h1 {
+                font-size: 32px;
+            }
+
+            .violation-table th,
+            .violation-table td {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 640px) {
+
+            .violation-table,
+            .violation-table tbody,
+            .violation-table tr,
+            .violation-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .violation-table thead {
+                display: none;
+            }
+
+            .violation-table tr {
+                margin-bottom: 18px;
+                border: 1px solid #e9edf2;
+                border-radius: 18px;
+                background: white;
+                padding: 8px 0;
+            }
+
+            .violation-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #f0f2f5;
+                padding: 12px 16px;
+            }
+
+            .violation-table td:before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #1e293b;
+                width: 45%;
+            }
+
+            .penalty-badge,
+            .warning-badge {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <!-- Правила платформы — только контент (без header/footer) -->
+        <div class="rules-section container">
+            <div class="rules-header">
+                <h1>Правила платформы <span style="color: #d4af37;">GoldenUy</span></h1>
+                <p>Честные условия для продавцов и покупателей недвижимости в Узбекистане</p>
+            </div>
+
+            <!-- сетка карточек правил (4 правила) -->
+            <div class="rules-grid">
+                <!-- Карточка 1: размещение объявлений -->
+                <div class="rule-card">
+                    <div class="rule-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Размещение объявлений <span class="badge-new">Обязательно</span></h3>
+                    <p>Каждое объявление о продаже дома, ховли или квартиры должно содержать достоверные данные.</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-check-circle"></i> Реальные фотографии объекта (не менее 4 шт.)</li>
+                        <li><i class="fas fa-check-circle"></i> Точный адрес или локация с районом</li>
+                        <li><i class="fas fa-check-circle"></i> Указание цены в сум / USDT без скрытых комиссий</li>
+                        <li><i class="fas fa-check-circle"></i> Контактный номер владельца или риелтора</li>
+                    </ul>
+                </div>
+
+                <!-- Карточка 2: комиссии и модерация -->
+                <div class="rule-card">
+                    <div class="rule-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Модерация и комиссия</h3>
+                    <p>Все объявления проходят проверку в течение 24 часов. Услуги платформы для покупателей — бесплатны.</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-shield-alt"></i> Продавец оплачивает фиксированный сбор при успешной сделке (1,5%)</li>
+                        <li><i class="fas fa-shield-alt"></i> Запрещены фейковые офферы и накрутка просмотров</li>
+                        <li><i class="fas fa-shield-alt"></i> Платформа проверяет документы на объекты по кадастру Узбекистана</li>
+                    </ul>
+                </div>
+
+                <!-- Карточка 3: права покупателя -->
+                <div class="rule-card">
+                    <div class="rule-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Права покупателя и гарантии</h3>
+                    <p>Безопасность сделок — наш приоритет. Каждый зарегистрированный пользователь защищён.</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-lock"></i> Депонирование средств через эскроу-сервис (опционально)</li>
+                        <li><i class="fas fa-lock"></i> Возврат предоплаты при незаконных требованиях продавца</li>
+                        <li><i class="fas fa-lock"></i> Чат с юристом по недвижимости для резидентов РУз</li>
+                    </ul>
+                </div>
+
+                <!-- Карточка 4: этика и достоверность -->
+                <div class="rule-card">
+                    <div class="rule-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Этика и достоверность</h3>
+                    <p>Сообщество профессионалов и честных собственников. Нарушители блокируются.</p>
+                    <ul class="rule-list">
+                        <li><i class="fas fa-ban"></i> Запрещены оскорбления, спам и мультиаккаунты</li>
+                        <li><i class="fas fa-ban"></i> Цена в объявлении не может быть изменена в переписке более чем на 20%</li>
+                        <li><i class="fas fa-ban"></i> Актуальность: объявления старше 45 дней архивируются</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Таблица нарушений и штрафов (стилизованная) -->
+            <div class="section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Нарушения и санкции платформы</span>
+            </div>
+            <div class="penalty-table-wrapper">
+                <table class="violation-table">
+                    <thead>
+                        <tr><th>Тип нарушения</th><th>Описание</th><th>Последствия / штраф</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Тип нарушения">❌ Недостоверное фото</td>
+                            <td data-label="Описание">Использование чужих изображений или обработанных до неузнаваемости</td>
+                            <td data-label="Последствия / штраф"><span class="penalty-badge">Штраф 300 000 сум</span> + блокировка на 14 дней</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Тип нарушения">💰 Ценовой спам</td>
+                            <td data-label="Описание">Указание цены в 2 раза ниже реальной для привлечения внимания</td>
+                            <td data-label="Последствия / штраф"><span class="penalty-badge warning-badge">Предупреждение</span> или удаление объявления</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Тип нарушения">📞 Навязчивая реклама</td>
+                            <td data-label="Описание">Массовая рассылка ссылок на сторонние сервисы в чатах</td>
+                            <td data-label="Последствия / штраф"><span class="penalty-badge">Блокировка аккаунта</span> на 30 дней</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Тип нарушения">🏚️ Двойная продажа</td>
+                            <td data-label="Описание">Продажа одного объекта разным покупателям без расторжения договора</td>
+                            <td data-label="Последствия / штраф"><span class="penalty-badge">Перманентный бан</span> + чёрный список</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- легкий скрипт для интерактива карточек (в стиле оригинального проекта) -->
+    <script>
+        const ruleCards = document.querySelectorAll('.rule-card');
+        if (ruleCards.length) {
+            ruleCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('button') || e.target.closest('a')) return;
+                    card.style.transition = '0.1s';
+                    card.style.transform = 'scale(0.99)';
+                    setTimeout(() => { card.style.transform = ''; }, 150);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

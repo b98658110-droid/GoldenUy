@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenUy — Избранное</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* =======================================================   1. GLOBAL / RESET ======================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+
+
+        /* ======================================================= 2. HEADER ======================================================= */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding-top: 15px;
+            padding-bottom: 15px;
+
+            background-color: #111111;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d4af37;
+            text-decoration: none;
+        }
+
+        .nav-links,
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #d1d5db;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #d4af37;
+        }
+
+        /* Активная ссылка (Избранные) */
+        .nav-link.active {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+
+
+        /* ======================================================= 3. BUTTONS ======================================================= */
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+
+            cursor: pointer;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+        }
+
+        .btn-secondary:hover {
+            background: #d4af37;
+            color: white;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+
+
+        /* ======================================================= 4. CUSTOM SELECT ======================================================= */
+
+        .custom-select {
+            padding: 10px 36px 10px 16px;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+
+            background-color: #ffffff;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            color: #4a5568;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            appearance: none;
+
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23d4af37'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 14px;
+        }
+
+        .custom-select:hover {
+            border-color: #d4af37;
+        }
+
+        .custom-select:focus {
+            outline: none;
+
+            border-color: #d4af37;
+
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+
+
+        /* ======================================================= 5. FAVORITES EMPTY SECTION ======================================================= */
+
+        .favorites-empty {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            min-height: 60vh;
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            color: #d4af37;
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .empty-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .empty-message {
+            font-size: 18px;
+            color: #64748b;
+            max-width: 500px;
+            line-height: 1.5;
+        }
+
+
+
+        /* ======================================================= 6. FOOTER ======================================================= */
+
+        .footer {
+            margin-top: 0;
+            padding-top: 50px;
+            padding-bottom: 20px;
+
+            background: #111111;
+
+            color: white;
+
+            box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr 1fr;
+
+            gap: 40px;
+
+            padding-bottom: 30px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-logo {
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            color: #bdc3c7;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            margin-bottom: 15px;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+        }
+
+        .footer-nav li {
+            margin-bottom: 10px;
+        }
+
+        .footer-nav a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: #d4af37;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-link.tg:hover {
+            background: #0088cc;
+        }
+
+        .social-link.insta:hover {
+            background: #e1306c;
+        }
+
+        .social-link.yt:hover {
+            background: #ff0000;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+
+            text-align: center;
+
+            color: #7f8c8d;
+
+            font-size: 12px;
+        }
+
+
+
+        /* ======================================================= 7. RESPONSIVE ======================================================= */
+
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links,
+            .nav-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+
+            .empty-title {
+                font-size: 28px;
+            }
+
+            .empty-message {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header container">
+        <a href="#" class="logo">GoldenUy</a>
+        <nav class="nav-links">
+            <a href="../index.html" class="nav-link">Главная</a>
+            <a href="#" class="nav-link active">Избранные</a>
+            <a href="aboutUs.html" class="nav-link">О нас</a>
+        </nav>
+        <div class="nav-actions">
+            <select class="custom-select">
+                <option>Сум</option>
+                <option>USDT</option>
+            </select>
+            <button class="btn btn-secondary">Объявления</button>
+            <button class="btn btn-primary">Войти</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="favorites-empty">
+            <div class="empty-icon">
+                <i class="far fa-heart"></i>
+            </div>
+            <h1 class="empty-title">Избранное</h1>
+            <p class="empty-message">Здесь пока нет объявлений</p>
+        </div>
+    </main>
+
+    <footer class="footer container">
+        <div class="footer-content">
+            <div class="footer-info">
+                <a href="#" class="logo footer-logo">GoldenUy</a>
+                <p class="footer-text">
+                    Ищете дом мечты или хотите выгодно продать квартиру?
+                    <strong>GoldenUy</strong> — ведущая платформа недвижимости в Узбекистане с актуальными ценами в
+                    Сумах и USDT. Разместите объявление прямо сейчас и найдите покупателя за пару дней!
+                </p>
+            </div>
+
+            <div class="footer-nav">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#">Правила публикации</a></li>
+                    <li><a href="#">Помощь и поддержка</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Мы в соцсетях</h4>
+                <p>Подписывайтесь на горячие предложения:</p>
+                <div class="social-icons">
+                    <a href="#" class="social-link tg" title="Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link insta" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link yt" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 GoldenUy. Разработано для рынка недвижимости Узбекистана.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
