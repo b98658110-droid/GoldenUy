@@ -665,50 +665,187 @@
 
 
 
-        /* ======================================================= 15. RESPONSIVE  ======================================================= */
+        /* =======================================================  16. MEDIA QUERIES ПО ЗАДАННЫМ БРЕЙКПОИНТАМ ======================================================= */
 
-        @media (max-width: 1200px) {
-
-            .property-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-
+        /* Мобильные устройства: 320px — 767px */
+        @media (min-width: 320px) and (max-width: 767px) {
             .container {
-                padding-left: 20px;
-                padding-right: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
             }
 
             .header {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .logo {
+                font-size: 20px;
             }
 
             .nav-links,
             .nav-actions {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 12px;
+            }
+
+            .catalog-content {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .filter-box {
+                gap: 5px;
+            }
+
+            .search-btn {
+                align-self: stretch;
+                margin-top: 5px;
+            }
+
+            .main-hero {
+                min-height: 350px;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                text-align: center;
+                align-items: center;
+            }
+
+            .main-hero h2 {
+                font-size: 24px;
+                max-width: 100%;
+            }
+
+            .main-hero p {
+                font-size: 14px;
+                max-width: 100%;
+            }
+
+            .btn-large {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .houses {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+                padding-top: 40px;
+            }
+
+            .houses h1 {
+                font-size: 24px;
+            }
+
+            .offers-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .offers-header h3 {
+                font-size: 22px;
             }
 
             .property-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card-image-box {
+                height: 200px;
+            }
+
+            .card-price {
+                font-size: 18px;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
-
+                gap: 30px;
                 text-align: center;
             }
 
             .social-icons {
                 justify-content: center;
             }
+        }
 
-            .houses {
-                flex-direction: column;
-                align-items: flex-start;
+        /* Планшеты: 768px — 1024px */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .catalog-content {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+
+            .property-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .main-hero h2 {
+                font-size: 32px;
+                max-width: 500px;
+            }
+
+            .main-hero p {
+                font-size: 16px;
+                max-width: 500px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Ноутбуки и небольшие мониторы: 1025px — 1200px */
+        @media (min-width: 1025px) and (max-width: 1200px) {
+            .container {
+                padding-left: 35px;
+                padding-right: 35px;
+            }
+
+            .catalog-content {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+            }
+
+            .property-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 22px;
+            }
+
+            .main-hero h2 {
+                font-size: 38px;
+            }
+        }
+
+        /* Широкоформатные мониторы: 1201px — 1440px */
+        @media (min-width: 1201px) and (max-width: 1440px) {
+            .container {
+                padding-left: 40px;
+                padding-right: 40px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .property-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 25px;
+            }
+
+            .catalog-content {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 20px;
             }
         }
     </style>
